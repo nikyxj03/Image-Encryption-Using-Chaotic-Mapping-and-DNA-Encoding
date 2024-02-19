@@ -1,0 +1,44 @@
+from tkinter import *
+from tkinter import filedialog
+from PIL import Image, ImageTk
+class login():
+    def __init__(self, root):
+        self.f = Frame(root, width=1200, height=700, cursor='cross', bg='silver')
+        self.f.propagate(0)
+        self.f.pack()
+        user = Label(root, text="Username -", )
+        user.place(x=50, y=20)
+
+        self.Username =Entry(self.f,width=35)
+        self.Username.place(x=150, y=20, width=100)
+
+        passw = Label(root, text="Password -")
+        passw.place(x=50, y=50)
+
+        self.password = Entry(self.f,width=35)
+        self.password.place(x=150, y=50, width=100)
+
+        button = Button(root, text="Login",
+                              bg='blue', command=self.login)
+        button.place(x=150, y=75, width=55)
+
+    def login(self):
+        User=self.Username.get()
+        Pass=self.password.get()
+
+        window = Toplevel(root)
+        path = filedialog.askopenfilename()
+        img = PhotoImage(file=path)
+        c = Canvas(window, width=3000, height=2000)
+        c.pack()
+        c.create_image(0, 0, anchor=NW, image=img)
+        window.mainloop()
+    def open1(self,window,path):
+        path = filedialog.askopenfilename()
+        img = PhotoImage(file=path)
+        c = Canvas(window, width=500, height=500)
+        c.pack()
+        c.create_image(0, 0, anchor=NW, image=img)
+root=Tk()
+m=login(root)
+root.mainloop()
